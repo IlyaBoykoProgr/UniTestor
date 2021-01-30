@@ -68,6 +68,7 @@
     </property>
     <addaction name="test_open"/>
     <addaction name="test_create"/>
+    <addaction name="result_open"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -91,6 +92,14 @@
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="result_open">
+   <property name="text">
+    <string>Открыть отчет</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
    </property>
   </action>
  </widget>

@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QDropEvent>
+#include <QMimeData>
 #include "testData.h"
 #include "pagecreationdialog.h"
 #include "testingdialog.h"
@@ -24,9 +26,13 @@ public slots:
     void on_test_open_triggered();
 private slots:
     void on_test_create_triggered();
-
+    void on_result_open_triggered();
 private:
+    void dropEvent(QDropEvent* event);
+    void dragEnterEvent(QDragEnterEvent* event);
     void openTest(QString path);
+    void openResult(QString path);
+    void saveResult(QString path,uint64_t points, uint64_t page_count);
     Ui::TheWindow *ui;
 };
 #endif // THEWINDOW_H
