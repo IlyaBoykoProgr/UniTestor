@@ -8,6 +8,12 @@ TheWindow::TheWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->butt_open,SIGNAL(clicked()),this,SLOT(on_test_open_triggered()));
+    connect(ui->butt_create,SIGNAL(clicked()),this,SLOT(on_test_create_triggered()));
+    on_butt_research_clicked();
+    iconGif = new QMovie(":/images/icon.gif");
+    iconGif->setSpeed(10);
+    connect(iconGif,&QMovie::frameChanged,this,&TheWindow::onFrameChanged);
+    iconGif->start();
 }
 
 void TheWindow::on_test_open_triggered()
@@ -71,6 +77,20 @@ void TheWindow::on_result_open_triggered()
     openResult(path);
 }
 
+void TheWindow::on_butt_research_clicked(){
+    ui->butt_research->hide();
+    ui->searchStatus->setText("Поиск существующих тестов");
+    ui->listTests->clear();
+std::thread([this]{
+    foreach(auto file,QDir::drives()){
+        QDirIterator it(file.path(),{"*.ut"},QDir::AllEntries|QDir::NoSymLinks|QDir::NoDotAndDotDot,QDirIterator::Subdirectories);
+        while(it.hasNext()) ui->listTests->addItem(it.next());
+    }
+    ui->searchStatus->setText(ui->listTests->count()==0?"Не найдено тестов":"Созданные ранее тесты:");
+    ui->butt_research->show();
+}).detach();
+}
+
 void TheWindow::on_test_create_triggered()
 {
     if(
@@ -110,5 +130,12 @@ void TheWindow::dragEnterEvent(QDragEnterEvent *event){
     if(path.endsWith(".ut")||path.endsWith(".utr"))
         event->acceptProposedAction();
 }
+void TheWindow::on_listTests_itemDoubleClicked(QListWidgetItem *item){
+    if(
+        QMessageBox::question(this,"","Открыть тест "+item->text()+"?")==QMessageBox::No
+    )return;
+    openTest(item->text());
+}
 
 TheWindow::~TheWindow(){delete ui;}
+

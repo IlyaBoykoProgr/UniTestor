@@ -6,50 +6,81 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>315</width>
-    <height>136</height>
+    <width>519</width>
+    <height>220</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>315</width>
-    <height>136</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>315</width>
-    <height>136</height>
-   </size>
   </property>
   <property name="acceptDrops">
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>UniTestor 1.0</string>
+   <string>UniTestor Beta2</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QLabel" name="LOGO">
-      <property name="font">
-       <font>
-        <pointsize>29</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>UniTestor Beta</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="_2">
+      <item>
+       <widget class="QLabel" name="searchStatus"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="butt_research">
+        <property name="text">
+         <string>Обновить</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listTests"/>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QPushButton" name="butt_open">
-      <property name="text">
-       <string>Открыть тест</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="l_1">
+      <item>
+       <widget class="QLabel" name="LOGO">
+        <property name="font">
+         <font>
+          <pointsize>27</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>UniTestor Beta2</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="LOGO2">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Программа для тестирования и проверки знаний.
+Вы можете создать свой собственный тест
+и дать пройти его любому другому
+человеку используя эту программу!</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="butt_open">
+        <property name="text">
+         <string>Открыть тест</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="butt_create">
+        <property name="text">
+         <string>Создать свой тест</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -58,7 +89,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>315</width>
+     <width>519</width>
      <height>21</height>
     </rect>
    </property>
