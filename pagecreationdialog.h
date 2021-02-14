@@ -28,7 +28,7 @@ private slots:
 
 private:
     QList<bool> isRight;
-    page_type cur_type=INPUT;
+    page_type cur_type;
     QList<QString> answ_vars;
     Ui::pageCreationDialog *ui;
 };

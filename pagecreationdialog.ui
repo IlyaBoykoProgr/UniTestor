@@ -54,12 +54,6 @@
          <height>16777215</height>
         </size>
        </property>
-       <property name="toolTip">
-        <string>Есть несколько типов вопросов
-Открытый - будет отображено поле ввода и все варианты ответов ниже будут считаться верными
-Один вариант ответа - тестируемый сможет выбрать один вариант, и один вариант верен
-Несколько ответов - можно выбрать несколько ответов.</string>
-       </property>
        <property name="text">
         <string>Тип вопроса:</string>
        </property>
@@ -92,7 +86,10 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="tip_3">
+    <widget class="QLabel" name="tip_3"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="tip_4">
      <property name="text">
       <string>Нажмите на ответ, чтобы сделать его верным/неверным
 Нажмите дважды, чтобы удалить вариант ответа</string>

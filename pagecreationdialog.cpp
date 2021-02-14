@@ -7,6 +7,7 @@ pageCreationDialog::pageCreationDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->page_type->addItems(QStringList()<<"Открытый вопрос"<<"Один вариант ответа"<<"Несколько ответов");
+    on_page_type_currentIndexChanged(0);
 }
 
 void pageCreationDialog::getTo(pagedata* data){
@@ -41,6 +42,11 @@ void pageCreationDialog::getTo(pagedata* data){
 
 void pageCreationDialog::on_page_type_currentIndexChanged(int index){
     cur_type=(page_type)index;
+    if(index==0) ui->tip_3->setText("Открытый вопрос - будет отображено поле ввода и все \n"
+                                    "варианты ответов ниже будут считаться верными");
+    else if(index==1) ui->tip_3->setText("Один вариант ответа - тестируемый сможет выбрать\n"
+                                         "один ответ");
+    else if(index==2) ui->tip_3->setText("Несколько ответов - тестируемый сможет выбрать несколько ответов.");
 }
 
 void pageCreationDialog::on_butt_addAnswer_clicked()
@@ -63,7 +69,7 @@ void pageCreationDialog::on_butt_done_clicked()
 
 void pageCreationDialog::on_list_answers_itemDoubleClicked(QListWidgetItem *item)
 {
-    QMessageBox::question(this,"","Удалить ответ '"+item->text()+"'?");
+    if(QMessageBox::question(this,"","Удалить ответ '"+item->text()+"'?")==QMessageBox::No)return;
     answ_vars.removeAt(ui->list_answers->row(item));
     isRight.removeAt(ui->list_answers->row(item));
     ui->list_answers->takeItem(ui->list_answers->row(item));

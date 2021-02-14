@@ -10,6 +10,7 @@
 #include <thread>
 #include <QDirIterator>
 #include <QMovie>
+#include <thread>
 #include "testData.h"
 #include "pagecreationdialog.h"
 #include "testingdialog.h"

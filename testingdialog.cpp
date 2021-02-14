@@ -8,18 +8,25 @@ testingDialog::testingDialog(QWidget *parent,pagedata* g) :
     ui->setupUi(this);
     data=g;
     ui->l_question->setText(data->question);
-    if(data->type==INPUT)ui->form->hide();
-    else ui->form_input->hide();
-    if(data->type==RADIO)
+    if(data->type==INPUT){
+        ui->form->hide();
+        ui->l_tip->setText("Введите свой ответ в поле ниже:");
+    }else ui->form_input->hide();
+    if(data->type==RADIO){
+        ui->l_tip->setText("Выберите один вариант ответа:");
         foreach(QString str,data->variants){
             QListWidgetItem *qlwi= new QListWidgetItem(ui->form);
             ui->form->setItemWidget(qlwi, new QRadioButton(str));
+        }
     }
-    if(data->type==CHECKBOX)
+    if(data->type==CHECKBOX){
+        ui->l_tip->setText("Выберите ответы, которые считаете верными:");
         foreach(QString str,data->variants){
             QListWidgetItem *qlwi= new QListWidgetItem(ui->form);
             ui->form->setItemWidget(qlwi, new QCheckBox(str));
+        }
     }
+    adjustSize();
 }
 
 void testingDialog::getResultTo(uint64_t& true_count){

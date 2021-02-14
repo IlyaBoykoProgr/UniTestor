@@ -24,7 +24,6 @@ void TheWindow::on_test_open_triggered()
 }
 
 void TheWindow::openTest(QString path){
-    hide();
     uint64_t p_count=0,right_count=0;
     {   QFile file(path.toUtf8().data());
         file.open(QFile::ReadOnly);
@@ -40,18 +39,18 @@ void TheWindow::openTest(QString path){
     }
     if(QMessageBox::question(this,path,"Набрано "+QString::number(right_count)+" из "+QString::number(p_count)
         +"\nСохранить отчет?")==QMessageBox::Yes) saveResult(path,right_count,p_count);
-    show();
 }
 
 void TheWindow::saveResult(QString path,uint64_t points, uint64_t page_count){
     QString pathsave= QFileDialog::getSaveFileUrl(this,"Выберите место сохранения",QUrl(),"*.utr",0,(QFileDialog::Option)16)
                     .toString().replace("file:///","");
-    if(!pathsave.endsWith(".utr"))pathsave+=".utr";
     if(pathsave.isEmpty())return;
+    if(!pathsave.endsWith(".utr"))pathsave+=".utr";
     QFile file(pathsave.toUtf8().data());
     QDataStream qds(&file);
     file.open(QFile::WriteOnly);
     qds<<path<<points<<page_count;
+    QMessageBox::information(this,"","Ваш результат был сохранен");
 }
 
 void TheWindow::openResult(QString path){
@@ -104,7 +103,7 @@ void TheWindow::on_test_create_triggered()
     do{
         p_count++;
         pagedata cur_page;
-        pageCreationDialog pcd;
+        pageCreationDialog pcd(this);
         pcd.getTo(&cur_page);
         page.append(cur_page);
     }while(QMessageBox::question(this,"","Создать еще вопрос в тесте?")==QMessageBox::Yes);

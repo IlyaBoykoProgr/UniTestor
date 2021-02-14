@@ -47,7 +47,7 @@
          </font>
         </property>
         <property name="text">
-         <string>UniTestor Beta2</string>
+         <string>UniTestor Beta3</string>
         </property>
        </widget>
       </item>
@@ -62,7 +62,7 @@
          <string>Программа для тестирования и проверки знаний.
 Вы можете создать свой собственный тест
 и дать пройти его любому другому
-человеку используя эту программу!</string>
+человеку!</string>
         </property>
        </widget>
       </item>
